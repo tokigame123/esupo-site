@@ -1,61 +1,139 @@
-const toggle = document.querySelector("[data-nav-toggle]");
+const navToggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const header = document.querySelector("[data-header]");
-const heroBackground = document.querySelector(".hero-bg");
-const revealElements = document.querySelectorAll("[data-reveal]");
+const heroMedia = document.querySelector(".hero-media");
 
-if (toggle && nav) {
-  toggle.addEventListener("click", () => {
+if (navToggle && nav) {
+  navToggle.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
   });
 
   nav.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "メニューを開く");
-    }
+    if (!(event.target instanceof HTMLAnchorElement)) return;
+    nav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "メニューを開く");
   });
 }
 
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    {
-      threshold: 0.14,
-      rootMargin: "0px 0px -7% 0px",
-    },
-  );
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" },
+    )
+  : null;
 
-  revealElements.forEach((element, index) => {
-    element.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
-    revealObserver.observe(element);
+document.querySelectorAll(".reveal").forEach((element, index) => {
+  if (index % 2 === 1) element.classList.add("reveal-from-right");
+  if (revealObserver) revealObserver.observe(element);
+  else element.classList.add("is-visible");
+});
+
+const getNews = () => {
+  try {
+    const draft = localStorage.getItem("esupoNewsDraft");
+    if (draft) return JSON.parse(draft);
+  } catch (error) {
+    console.warn("ニュース下書きを読み込めませんでした。", error);
+  }
+
+  return Array.isArray(window.ESUPO_NEWS) ? window.ESUPO_NEWS : [];
+};
+
+const formatDate = (dateString) => dateString.replaceAll("-", ".");
+
+const createNewsCard = (item) => {
+  const card = document.createElement("article");
+  card.className = "news-card reveal";
+  card.id = item.id;
+
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "news-image";
+  const image = document.createElement("img");
+  image.src = item.image || "assets/hero.png";
+  image.alt = item.alt || "";
+  image.loading = "lazy";
+  imageWrap.append(image);
+
+  const copy = document.createElement("div");
+  copy.className = "news-card-copy";
+  const time = document.createElement("time");
+  time.dateTime = item.date;
+  time.textContent = formatDate(item.date);
+  const title = document.createElement("h3");
+  title.textContent = item.title;
+  const summary = document.createElement("p");
+  summary.textContent = item.summary;
+  const more = document.createElement("span");
+  more.className = "read-more";
+  more.textContent = "お知らせを読む →";
+
+  copy.append(time, title, summary, more);
+  card.append(imageWrap, copy);
+  return card;
+};
+
+document.querySelectorAll("[data-news-list]").forEach((container) => {
+  const items = [...getNews()].sort((a, b) => b.date.localeCompare(a.date));
+  const visibleItems = container.dataset.newsList === "home" ? items.slice(0, 3) : items;
+
+  if (!visibleItems.length) {
+    const empty = document.createElement("p");
+    empty.className = "empty-news";
+    empty.textContent = "現在、お知らせはありません。";
+    container.append(empty);
+    return;
+  }
+
+  visibleItems.forEach((item, index) => {
+    const card = createNewsCard(item);
+    if (index % 2 === 1) card.classList.add("reveal-from-right");
+    container.append(card);
+    if (revealObserver) revealObserver.observe(card);
+    else card.classList.add("is-visible");
   });
-} else {
-  revealElements.forEach((element) => element.classList.add("is-visible"));
+});
+
+if (document.body.dataset.page === "news") {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: getNews()
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "NewsArticle",
+          headline: item.title,
+          datePublished: item.date,
+          description: item.summary,
+          image: item.image.startsWith("data:") ? undefined : new URL(item.image, "https://esupo.jp/").href,
+          publisher: { "@type": "Organization", name: "合同会社えーすぽ" },
+        },
+      })),
+  };
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(structuredData);
+  document.head.append(script);
 }
 
 let scrollTicking = false;
-
 const updateScrollEffects = () => {
   const scrollY = window.scrollY;
-
-  if (header) {
-    header.classList.toggle("is-scrolled", scrollY > 24);
+  if (header) header.classList.toggle("is-scrolled", scrollY > 16);
+  if (heroMedia && scrollY < window.innerHeight) {
+    heroMedia.style.setProperty("--hero-shift", `${scrollY * 0.05}px`);
   }
-
-  if (heroBackground && scrollY < window.innerHeight) {
-    heroBackground.style.setProperty("--hero-shift", `${scrollY * 0.08}px`);
-  }
-
   scrollTicking = false;
 };
 
@@ -64,7 +142,7 @@ window.addEventListener(
   () => {
     if (scrollTicking) return;
     scrollTicking = true;
-    window.requestAnimationFrame(updateScrollEffects);
+    requestAnimationFrame(updateScrollEffects);
   },
   { passive: true },
 );

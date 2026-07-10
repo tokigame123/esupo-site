@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>ニュース管理ツール | 合同会社えーすぽ</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="admin-body">
+    <main class="admin-shell">
+      <header class="admin-topbar">
+        <div class="admin-title">
+          <h1>ニュース管理ツール</h1>
+          <p>フォームで追加・編集し、サイト上の見え方を確認できます。</p>
+        </div>
+        <div class="admin-actions">
+          <a class="admin-button" href="index.html" target="_blank" rel="noopener">トップを確認</a>
+          <a class="admin-button" href="news.html" target="_blank" rel="noopener">ニュースを確認</a>
+        </div>
+      </header>
+
+      <div class="admin-notice">
+        編集内容はこのブラウザ内に保存されます。「公開用ファイルを書き出す」を押し、GitHubリポジトリの同名ファイルと置き換えるとニュースを公開できます。この画面だけでGitHubへ直接送信する機能はありません。
+      </div>
+
+      <div class="admin-grid">
+        <section class="admin-panel" aria-labelledby="form-title">
+          <h2 id="form-title">ニュースを追加・編集</h2>
+          <form id="news-form">
+            <input type="hidden" id="news-id">
+            <div class="field">
+              <label for="news-date">掲載日</label>
+              <input type="date" id="news-date" required>
+            </div>
+            <div class="field">
+              <label for="news-title">タイトル</label>
+              <input type="text" id="news-title" maxlength="70" required placeholder="例：イベント開催のお知らせ">
+            </div>
+            <div class="field">
+              <label for="news-summary">本文</label>
+              <textarea id="news-summary" maxlength="260" required placeholder="ニュースの概要を入力してください"></textarea>
+            </div>
+            <div class="field">
+              <label for="news-image">画像URLまたは素材パス</label>
+              <input type="text" id="news-image" placeholder="assets/news-example.webp">
+              <p class="field-help">既存画像を使う場合は assets/ から始まるパスを入力します。</p>
+            </div>
+            <div class="field">
+              <label for="news-image-file">画像を選択</label>
+              <input type="file" id="news-image-file" accept="image/jpeg,image/png,image/webp">
+              <p class="field-help">選んだ画像はブラウザ内で軽量化し、ニュースデータに含めます。</p>
+            </div>
+            <div class="field">
+              <label for="news-alt">画像の説明</label>
+              <input type="text" id="news-alt" maxlength="100" placeholder="例：大会会場でプレイする学生たち">
+            </div>
+            <div class="admin-actions">
+              <button class="admin-button primary" type="submit">保存する</button>
+              <button class="admin-button" type="button" id="cancel-edit">入力をクリア</button>
+            </div>
+          </form>
+          <p class="admin-status" id="admin-status" role="status"></p>
+        </section>
+
+        <section class="admin-panel" aria-labelledby="list-title">
+          <h2 id="list-title">登録中のニュース</h2>
+          <div class="editor-news-list" id="editor-news-list"></div>
+          <div class="admin-actions" style="margin-top: 20px">
+            <button class="admin-button primary" type="button" id="export-news">公開用ファイルを書き出す</button>
+            <label class="admin-button" for="import-news" style="display:inline-flex;align-items:center">ファイルを読み込む</label>
+            <input type="file" id="import-news" accept=".js,.json" hidden>
+            <button class="admin-button danger" type="button" id="reset-news">初期状態に戻す</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="news-data.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
