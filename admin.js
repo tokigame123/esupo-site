@@ -9,6 +9,7 @@ const summaryInput = document.querySelector("#news-summary");
 const imageInput = document.querySelector("#news-image");
 const imageFileInput = document.querySelector("#news-image-file");
 const altInput = document.querySelector("#news-alt");
+const urlInput = document.querySelector("#news-url");
 
 const initialNews = structuredClone(Array.isArray(window.ESUPO_NEWS) ? window.ESUPO_NEWS : []);
 let newsItems = loadDraft();
@@ -76,15 +77,23 @@ form.addEventListener("submit", async (event) => {
     image = await imageFileToDataUrl(imageFileInput.files[0]);
   }
 
+  const existingItem = newsItems.find((news) => news.id === editingId);
+  const title = titleInput.value.trim();
+  const summary = summaryInput.value.trim();
   const generatedId = `news-${dateInput.value}-${slugify(titleInput.value) || Date.now()}`;
   const item = {
+    ...existingItem,
     id: editingId || generatedId,
     date: dateInput.value,
-    title: titleInput.value.trim(),
-    summary: summaryInput.value.trim(),
+    title,
+    summary,
     image,
     alt: altInput.value.trim(),
+    url: urlInput.value.trim(),
   };
+
+  if (existingItem?.title !== title) delete item.titleParts;
+  if (existingItem?.summary !== summary) delete item.summaryParts;
 
   if (editingId) {
     newsItems = newsItems.map((news) => (news.id === editingId ? item : news));
@@ -148,6 +157,7 @@ function editItem(id) {
   summaryInput.value = item.summary;
   imageInput.value = item.image.startsWith("data:") ? "" : item.image;
   altInput.value = item.alt || "";
+  urlInput.value = item.url || "";
   imageFileInput.value = "";
   window.scrollTo({ top: 0, behavior: "smooth" });
   status.textContent = "編集内容を読み込みました。";

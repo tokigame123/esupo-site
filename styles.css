@@ -562,9 +562,17 @@ dd {
 }
 
 .read-more {
+  display: inline-flex;
   color: var(--blue);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+a.read-more:hover,
+a.read-more:focus-visible {
+  color: #80ddf5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .company-section {

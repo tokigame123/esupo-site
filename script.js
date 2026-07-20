@@ -50,6 +50,20 @@ const getNews = () => {
 
 const formatDate = (dateString) => dateString.replaceAll("-", ".");
 
+const appendTextParts = (element, parts, fallback) => {
+  if (!Array.isArray(parts) || !parts.length) {
+    element.textContent = fallback;
+    return;
+  }
+
+  parts.forEach((part) => {
+    const span = document.createElement("span");
+    span.className = "phrase-unit";
+    span.textContent = part;
+    element.append(span);
+  });
+};
+
 const createNewsCard = (item) => {
   const card = document.createElement("article");
   card.className = "news-card reveal";
@@ -69,12 +83,18 @@ const createNewsCard = (item) => {
   time.dateTime = item.date;
   time.textContent = formatDate(item.date);
   const title = document.createElement("h3");
-  title.textContent = item.title;
+  appendTextParts(title, item.titleParts, item.title);
   const summary = document.createElement("p");
-  summary.textContent = item.summary;
-  const more = document.createElement("span");
+  appendTextParts(summary, item.summaryParts, item.summary);
+  const more = document.createElement(item.url ? "a" : "span");
   more.className = "read-more";
-  more.textContent = "お知らせを読む →";
+  more.textContent = item.url ? "詳細を見る →" : "お知らせを読む →";
+  if (item.url) {
+    more.href = item.url;
+    more.target = "_blank";
+    more.rel = "noopener noreferrer";
+    more.setAttribute("aria-label", `${item.title}の詳細を見る（新しいタブで開きます）`);
+  }
 
   copy.append(time, title, summary, more);
   card.append(imageWrap, copy);
@@ -117,6 +137,7 @@ if (document.body.dataset.page === "news") {
           datePublished: item.date,
           description: item.summary,
           image: item.image.startsWith("data:") ? undefined : new URL(item.image, "https://esupo.jp/").href,
+          url: `https://esupo.jp/news.html#${item.id}`,
           publisher: { "@type": "Organization", name: "合同会社えーすぽ" },
         },
       })),
