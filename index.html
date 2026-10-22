@@ -3,27 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>合同会社えーすぽ | eスポーツ教育・学生キャリア支援</title>
-    <meta name="description" content="大阪を拠点に、eスポーツを通じた学生向け教育、スキルスクール、イベント企画を行う合同会社えーすぽの公式サイトです。">
     <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#08090b">
+    <title>合同会社えーすぽ | eスポーツ教育・学生キャリア支援</title>
+    <meta name="description" content="大阪を拠点に、eスポーツと教育をつなぐ合同会社えーすぽ。ゲームに熱中した経験を、社会で評価される力へ。">
     <link rel="canonical" href="https://esupo.jp/">
-    <link rel="icon" href="assets/logo.png" type="image/png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:site_name" content="合同会社えーすぽ">
-    <meta property="og:title" content="合同会社えーすぽ | eスポーツ教育・学生キャリア支援">
-    <meta property="og:description" content="ゲームに熱中する学生の経験を、社会で評価される力へ。eスポーツと教育をつなぐ大阪の学生法人チームです。">
+    <meta property="og:title" content="合同会社えーすぽ | eスポーツで、キャリアを切り開く。">
+    <meta property="og:description" content="大阪を拠点に、eスポーツと教育をつなぐ合同会社えーすぽ。ゲームに熱中した経験を、社会で評価される力へ。">
     <meta property="og:url" content="https://esupo.jp/">
-    <meta property="og:image" content="https://esupo.jp/assets/hero.png">
+    <meta property="og:image" content="https://esupo.jp/assets/news-school.webp">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261023">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://esupo.jp/#organization",
         "name": "合同会社えーすぽ",
         "url": "https://esupo.jp/",
         "logo": "https://esupo.jp/assets/logo.png",
@@ -37,136 +39,125 @@
           "streetAddress": "菊水通1-13-1",
           "addressCountry": "JP"
         },
-        "email": "mailto:esurprise01@outlook.jp"
+        "email": "esurprise01@outlook.jp",
+        "sameAs": ["https://x.com/TokiAPEX"]
       }
     </script>
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="vendor/lucide.min.js" defer></script>
+    <script src="news-data.js?v=20261023" defer></script>
+    <script src="script.js?v=20261023" defer></script>
   </head>
-  <body data-page="home">
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <div class="reading-progress" aria-hidden="true"></div>
     <header class="site-header" data-header>
-      <div class="header-inner">
-        <a class="brand" href="#top" aria-label="合同会社えーすぽ ホーム">
-          <img src="assets/logo.png" alt="" width="52" height="40">
-          <span>合同会社えーすぽ</span>
-        </a>
-        <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" data-nav-toggle>
-          <span></span><span></span><span></span>
-        </button>
-        <nav class="nav" data-nav aria-label="メインナビゲーション">
-          <a href="#business">事業内容</a>
-          <a href="#vision">理念</a>
-          <a href="#representative">代表</a>
-          <a href="news.html">ニュース</a>
-          <a href="#company">会社情報</a>
-          <a class="nav-contact" href="#contact">お問い合わせ</a>
-        </nav>
+      <a class="brand" href="./" aria-label="えーすぽ ホーム">
+        <img src="assets/logo.png" width="46" height="36" alt="">
+        <span>えーすぽ<span class="brand-sub">ESUPO LLC.</span></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="メインナビゲーション">
+        <a href="#vision">私たちについて</a>
+        <a href="#business">事業内容</a>
+        <a href="#news">ニュース</a>
+        <a href="#company">会社情報</a>
+        <a href="#contact" class="nav-contact">お問い合わせ<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </nav>
+      <div class="header-tools">
+        <button class="icon-button motion-toggle" type="button" aria-label="アニメーションを停止" aria-pressed="false" title="アニメーションを停止"><i data-lucide="pause" aria-hidden="true"></i></button>
+        <button class="icon-button menu-toggle" type="button" aria-label="メニューを開く" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button>
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-media" aria-hidden="true"></div>
-        <div class="hero-inner reveal">
-          <p class="eyebrow">Esports × Education × Career</p>
-          <h1 id="hero-title"><span class="hero-title-line">eスポーツで、</span><span class="hero-title-line"><span>キャリアを</span><span>切り開く。</span></span></h1>
-          <p class="hero-lead"><span class="phrase-unit">ゲームに熱中した経験を、</span><span class="phrase-unit">社会で役立つ力へ。</span><span class="phrase-unit">学生が夢中になれる競技体験を、</span><span class="phrase-unit">学びとキャリアにつなげます。</span></p>
-          <div class="hero-actions">
-            <a class="button primary" href="#business">事業内容を見る</a>
-            <a class="button secondary" href="news.html">最新ニュース</a>
+        <div class="hero-visual" aria-hidden="true"><img src="assets/news-school.webp" alt="" width="1400" height="788" fetchpriority="high"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="hero-content wrap">
+          <p class="hero-eyebrow"><span class="blue-dash"></span>ESPORTS / EDUCATION / CAREER</p>
+          <h1 id="hero-title"><span class="title-line"><span>eスポーツで、</span></span><span class="title-line"><span>キャリアを</span></span><span class="title-line blue-type"><span>切り開く。</span></span></h1>
+          <p class="hero-lead"><span class="phrase">ゲームに熱中した経験を、</span><span class="phrase">社会で役立つ力へ。</span><br><span class="phrase">その「好き」から、</span><span class="phrase">新しい未来がはじまる。</span></p>
+          <a class="action-link" href="#vision">えーすぽを知る<span class="arrow-disc"><i data-lucide="arrow-down-right" aria-hidden="true"></i></span></a>
+        </div>
+        <div class="hero-caption" aria-hidden="true"><span class="caption-cross">+</span><span>PLAY FOR<br>YOUR FUTURE.</span></div>
+        <div class="hero-bottom wrap"><a class="scroll-cue" href="#vision"><span class="scroll-line"></span>SCROLL TO EXPLORE</a><span>BASED IN OSAKA, JAPAN</span><span class="hero-page">01 <span>/ 06</span></span></div>
+      </section>
+
+      <div class="marquee" aria-label="Play. Learn. Go beyond.">
+        <div class="marquee-track"><div>PLAY. <span>LEARN.</span> GO BEYOND. <b>↗</b> PLAY. <span>LEARN.</span> GO BEYOND. <b>↗</b></div><div aria-hidden="true">PLAY. <span>LEARN.</span> GO BEYOND. <b>↗</b> PLAY. <span>LEARN.</span> GO BEYOND. <b>↗</b></div></div>
+      </div>
+
+      <section class="vision section-pad" id="vision" aria-labelledby="vision-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>01 / OUR VISION</span><span>私たちについて</span></p>
+          <div class="vision-intro">
+            <h2 class="section-title reveal" id="vision-title"><span class="phrase">その「好き」は、</span><br><span class="phrase">未来の力になる。</span></h2>
+            <div class="vision-description reveal"><p>ゲームが好き。<br>勝つために考える。仲間と挑戦する。<br>その経験には、もっと可能性がある。</p><p><span class="phrase">えーすぽは、</span><span class="phrase">eスポーツと教育をつなぎ、</span><span class="phrase">熱中する学生の経験を</span><span class="phrase">社会で評価される力へ変えていきます。</span></p></div>
+          </div>
+          <div class="vision-statement reveal"><p><span class="phrase">教育で、</span><span class="phrase">eスポーツの</span><br class="desktop-break"><span class="phrase">評価を上げる。</span></p><span class="statement-mark" aria-hidden="true">↗</span></div>
+          <p class="vision-note reveal"><span class="phrase">「ただのゲーム」で終わらせない。</span><span class="phrase">夢中の時間を、</span><span class="phrase">次の一歩につなげよう。</span></p>
+        </div>
+      </section>
+
+      <section class="business section-pad" id="business" aria-labelledby="business-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>02 / WHAT WE DO</span><span>事業内容</span></p>
+          <div class="section-heading reveal"><h2 class="section-title" id="business-title"><span class="phrase">遊びの先に、</span><br><span class="phrase">学びをつくる。</span></h2><p><span class="phrase">考える、伝える、協力する。</span><br><span class="phrase">eスポーツで得られる経験を、</span><br><span class="phrase">自分の未来につながる力へ。</span></p></div>
+          <div class="business-layout">
+            <figure class="business-photo reveal"><img data-business-image src="assets/news-school.webp" alt="チームで作戦を話し合い、eスポーツから学ぶ学生たちのイメージ" width="1400" height="788" loading="lazy"><figcaption><span data-business-caption>LEARN THROUGH PLAY.</span><span aria-hidden="true">↗</span></figcaption></figure>
+            <div class="service-list reveal">
+              <details class="service" name="services" open data-image="assets/news-school.webp" data-caption="LEARN THROUGH PLAY." data-alt="チームで作戦を話し合い、eスポーツから学ぶ学生たちのイメージ">
+                <summary><span class="service-number">01 / SCHOOL</span><h3><span class="phrase">eスポーツ</span><br><span class="phrase">スキルスクール</span></h3><span class="service-toggle" aria-hidden="true"><i data-lucide="plus"></i></span></summary>
+                <div class="service-content"><p><span class="phrase">学生がeスポーツを通じて、</span><span class="phrase">判断力・協働力・発信力を身につける</span><span class="phrase">学習プログラム。</span><span class="phrase">競技への熱中を、</span><span class="phrase">社会で活躍できる力へ育てます。</span></p><a class="inline-link" href="mailto:esurprise01@outlook.jp?subject=eスポーツスキルスクールについて">スクールについて相談する<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+              </details>
+              <details class="service" name="services" data-image="assets/news-company.webp" data-caption="CONNECT THROUGH ESPORTS." data-alt="eスポーツを通じて集まり、新しい挑戦を始める学生チームのイメージ">
+                <summary><span class="service-number">02 / EVENT</span><h3><span class="phrase">イベント</span><span class="phrase">企画・運営</span></h3><span class="service-toggle" aria-hidden="true"><i data-lucide="plus"></i></span></summary>
+                <div class="service-content"><p><span class="phrase">eスポーツ大会やアイデアソンなど、</span><span class="phrase">人と人がつながる機会を企画・運営。</span><span class="phrase">大阪を拠点に、</span><span class="phrase">学生の挑戦が生まれる場をつくります。</span></p><a class="inline-link" href="#news">イベントのお知らせを見る<i data-lucide="arrow-down-right" aria-hidden="true"></i></a></div>
+              </details>
+            </div>
+          </div>
+          <ol class="skills" aria-label="eスポーツを通して育てる力"><li class="reveal"><span class="skill-no">01</span><div><span class="skill-en">TEAMWORK</span><h3>チームで考える。</h3></div><i data-lucide="users-round" aria-hidden="true"></i></li><li class="reveal"><span class="skill-no">02</span><div><span class="skill-en">ANALYSIS</span><h3>分析して伝える。</h3></div><i data-lucide="scan-line" aria-hidden="true"></i></li><li class="reveal"><span class="skill-no">03</span><div><span class="skill-en">CAREER</span><h3>経験を力に変える。</h3></div><i data-lucide="move-up-right" aria-hidden="true"></i></li></ol>
+        </div>
+      </section>
+
+      <section class="news section-pad" id="news" aria-labelledby="news-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>03 / JOURNAL</span><span>ニュース</span></p>
+          <div class="section-heading news-heading reveal"><h2 class="section-title" id="news-title">いま、えーすぽ。</h2><a class="inline-link" href="news.html">すべてのニュース<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+          <div class="news-grid" data-news-list="home"></div>
+          <noscript><p>最新のお知らせは<a href="https://x.com/TokiAPEX">X（@TokiAPEX）</a>でご確認ください。</p></noscript>
+        </div>
+      </section>
+
+      <section class="representative section-pad" id="representative" aria-labelledby="representative-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>04 / OUR PEOPLE</span><span>代表</span></p>
+          <div class="representative-layout">
+            <figure class="representative-photo reveal"><img src="assets/representative.webp" alt="合同会社えーすぽ代表 船間翔紀" width="1200" height="1200" loading="lazy"><figcaption>SHOKI FUNAMA / REPRESENTATIVE</figcaption></figure>
+            <div class="representative-copy reveal"><p class="small-label">MESSAGE</p><h2 class="section-title" id="representative-title"><span class="phrase">熱中を、</span><br><span class="phrase">社会につなぐ。</span></h2><p><span class="phrase">学生団体e surpriseや</span><span class="phrase">合同会社えーすぽを立ち上げ。</span><span class="phrase">大阪を拠点に、</span><span class="phrase">eスポーツ大会や教育事業を企画運営。</span><span class="phrase">ゲームに熱中する学生の経験を</span><span class="phrase">社会で評価される力へ変えることを</span><span class="phrase">目指しています。</span></p><div class="representative-name"><span>合同会社えーすぽ 代表</span><h3>船間 翔紀</h3></div></div>
           </div>
         </div>
       </section>
 
-      <section class="section business-section" id="business" aria-labelledby="business-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Business</p>
-          <h2 id="business-title">事業内容</h2>
-          <p><span class="phrase-unit">eスポーツを「遊ぶ」だけで終わらせず、</span><span class="phrase-unit">考える、伝える、協力する経験へ育てます。</span></p>
-        </div>
-        <div class="business-layout">
-          <div class="business-feature reveal">
-            <p class="feature-number">01</p>
-            <h3><span>eスポーツ</span><span>スキルスクール</span></h3>
-            <p><span class="phrase-unit">学生がeスポーツを通じて、</span><span class="phrase-unit">判断力・協働力・発信力を身につけ、</span><span class="phrase-unit">社会で活躍できる力を磨く</span><span class="phrase-unit">学習プログラムです。</span></p>
-          </div>
-          <ol class="outcome-list" aria-label="身につく力">
-            <li class="reveal"><span>Teamwork</span><strong>チームで考える</strong></li>
-            <li class="reveal"><span>Analysis</span><strong>分析して伝える</strong></li>
-            <li class="reveal"><span>Career</span><strong>経験を力に変える</strong></li>
-          </ol>
+      <section class="company section-pad" id="company" aria-labelledby="company-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>05 / COMPANY</span><span>会社情報</span></p>
+          <div class="company-layout"><h2 class="section-title reveal" id="company-title">私たちのこと。</h2><dl class="company-table reveal"><div><dt>会社名</dt><dd>合同会社えーすぽ</dd></div><div><dt>所在地</dt><dd><span class="phrase">大阪府守口市</span><span class="phrase">菊水通1-13-1</span></dd></div><div><dt>設立</dt><dd>2026年4月</dd></div><div><dt>代表者</dt><dd>船間 翔紀</dd></div><div><dt>事業内容</dt><dd><span class="phrase">学生向けeスポーツ</span><span class="phrase">スキルスクール、</span><span class="phrase">イベント企画運営</span></dd></div></dl></div>
         </div>
       </section>
 
-      <section class="vision-section" id="vision" aria-labelledby="vision-title">
-        <div class="section inner reveal">
-          <p class="eyebrow">Vision</p>
-          <h2 id="vision-title"><span class="phrase-unit">教育で、</span><span class="phrase-unit">eスポーツの</span><span class="phrase-unit">評価を上げる。</span></h2>
-          <p><span class="phrase-unit">ビジネスの世界で認められつつある</span><span class="phrase-unit">eスポーツは、</span><span class="phrase-unit">今も「ただのゲーム」と</span><span class="phrase-unit">見られることがあります。</span><span class="phrase-unit">えーすぽは教育との掛け合わせによって、</span><span class="phrase-unit">熱中した時間に新しい価値をつくります。</span></p>
-        </div>
-      </section>
-
-      <section class="section representative-section" id="representative" aria-labelledby="representative-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Representative</p>
-          <h2 id="representative-title">代表</h2>
-        </div>
-        <div class="representative-layout">
-          <figure class="representative-photo reveal">
-            <img src="assets/representative.webp" alt="合同会社えーすぽ代表 船間翔紀" width="1200" height="1200" loading="lazy">
-          </figure>
-          <div class="representative-copy reveal">
-            <p class="role">合同会社えーすぽ 代表</p>
-            <h3>船間 翔紀</h3>
-            <p><span class="phrase-unit">学生団体e surpriseや</span><span class="phrase-unit">合同会社えーすぽを立ち上げ。</span><span class="phrase-unit">大阪を拠点に、</span><span class="phrase-unit">eスポーツ大会や教育事業を企画運営。</span><span class="phrase-unit">ゲームに熱中する学生の経験を、</span><span class="phrase-unit">社会で評価される力へ変えることを</span><span class="phrase-unit">目指しています。</span></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section news-section" aria-labelledby="news-title">
-        <div class="section-heading heading-row reveal">
-          <div>
-            <p class="eyebrow">News</p>
-            <h2 id="news-title">ニュース</h2>
-          </div>
-          <a class="text-link" href="news.html">ニュース一覧へ</a>
-        </div>
-        <div class="news-grid" data-news-list="home" aria-live="polite"></div>
-      </section>
-
-      <section class="company-section" id="company" aria-labelledby="company-title">
-        <div class="section inner">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Company</p>
-            <h2 id="company-title">会社情報</h2>
-          </div>
-          <dl class="company-table">
-            <div class="reveal"><dt>会社名</dt><dd>合同会社えーすぽ</dd></div>
-            <div class="reveal"><dt>所在地</dt><dd><span class="phrase-unit">大阪府守口市</span><span class="phrase-unit">菊水通1-13-1</span></dd></div>
-            <div class="reveal"><dt>設立</dt><dd>2026年4月</dd></div>
-            <div class="reveal"><dt>代表者</dt><dd>船間 翔紀</dd></div>
-            <div class="reveal"><dt>事業内容</dt><dd><span class="phrase-unit">学生向けeスポーツスキルスクール、</span><span class="phrase-unit">イベント企画運営</span></dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="section inner contact-inner reveal">
-          <div>
-            <p class="eyebrow">Contact</p>
-            <h2 id="contact-title"><span class="phrase-unit">eスポーツの新しい価値を、</span><span class="phrase-unit">一緒につくりませんか。</span></h2>
-          </div>
-          <a class="button primary" href="mailto:esurprise01@outlook.jp">メールで相談する</a>
+      <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <p class="section-label reveal"><span>06 / CONTACT</span><span>お問い合わせ</span></p>
+          <a class="contact-main reveal" href="mailto:esurprise01@outlook.jp"><div><h2 id="contact-title"><span class="phrase">次の可能性を、</span><br><span class="phrase">一緒につくろう。</span></h2><p><span class="phrase">スクール、イベント、</span><span class="phrase">取材・協業のご相談はこちら。</span></p></div><span class="contact-arrow"><i data-lucide="arrow-up-right" aria-hidden="true"></i></span></a>
+          <div class="contact-bottom reveal"><a href="mailto:esurprise01@outlook.jp">esurprise01@outlook.jp</a><span>LET'S MAKE THE NEXT MOVE.</span></div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <a class="brand footer-brand" href="#top"><img src="assets/logo.png" alt="" width="52" height="40"><span>合同会社えーすぽ</span></a>
-        <p>&copy; 2026 合同会社えーすぽ</p>
-      </div>
-    </footer>
+    <footer class="footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#top"><img src="assets/logo.png" width="46" height="36" alt=""><span>合同会社えーすぽ<span class="brand-sub">ESPORTS / EDUCATION / CAREER</span></span></a><div class="footer-links"><a href="news.html">ニュース</a><a href="https://x.com/TokiAPEX" target="_blank" rel="noopener noreferrer">X<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a class="icon-button back-top" href="#top" aria-label="ページ先頭へ" title="ページ先頭へ"><i data-lucide="arrow-up" aria-hidden="true"></i></a></div></div><p class="footer-wordmark" aria-hidden="true">ESUPO<span>↗</span></p><div class="footer-bottom"><span>PLAY FOR YOUR FUTURE.</span><p>&copy; 2026 ESUPO LLC.</p></div></div></footer>
 
-    <script src="news-data.js"></script>
-    <script src="script.js"></script>
+    <dialog class="news-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><span>ESUPO JOURNAL</span><button type="button" class="icon-button dialog-close" aria-label="ニュースを閉じる" title="閉じる"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-content"></div></dialog>
   </body>
 </html>

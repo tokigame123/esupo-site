@@ -4,6 +4,7 @@ const list = document.querySelector("#editor-news-list");
 const status = document.querySelector("#admin-status");
 const idInput = document.querySelector("#news-id");
 const dateInput = document.querySelector("#news-date");
+const categoryInput = document.querySelector("#news-category");
 const titleInput = document.querySelector("#news-title");
 const summaryInput = document.querySelector("#news-summary");
 const imageInput = document.querySelector("#news-image");
@@ -41,7 +42,7 @@ function slugify(value) {
 function clearForm() {
   form.reset();
   idInput.value = "";
-  dateInput.value = new Date().toISOString().slice(0, 10);
+  dateInput.value = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
   status.textContent = "";
 }
 
@@ -85,6 +86,7 @@ form.addEventListener("submit", async (event) => {
     ...existingItem,
     id: editingId || generatedId,
     date: dateInput.value,
+    category: categoryInput.value,
     title,
     summary,
     image,
@@ -153,6 +155,7 @@ function editItem(id) {
   if (!item) return;
   idInput.value = item.id;
   dateInput.value = item.date;
+  categoryInput.value = item.category || (item.id.includes("ideathon") ? "event" : item.id.includes("school") ? "school" : "company");
   titleInput.value = item.title;
   summaryInput.value = item.summary;
   imageInput.value = item.image.startsWith("data:") ? "" : item.image;
